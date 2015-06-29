@@ -86,6 +86,7 @@ Linking shared folder $nextReleaseDir/web/uploads ...
 Remote: [ -e '$nextReleaseDir/web/uploads' ]
 Remote: unlink $nextReleaseDir/web/uploads || rmdir $nextReleaseDir/web/uploads || rm $nextReleaseDir/web/uploads
 Remote: ln -nfs /tmp/temp_dir/shared/web/uploads $nextReleaseDir/web/uploads
+Remote: cd $nextReleaseDir && rm -rf app/cache/*
 Remote: cd $nextReleaseDir && ./app/console cache:clear --env=dev --no-debug
 Asset and assetic stuff...
 Remote: cd $nextReleaseDir && php app/console assets:install --symlink web --env=dev
@@ -135,6 +136,7 @@ Linking shared folder $nextReleaseDir/web/uploads ...
 Remote: [ -e '$nextReleaseDir/web/uploads' ]
 Remote: unlink $nextReleaseDir/web/uploads || rmdir $nextReleaseDir/web/uploads || rm $nextReleaseDir/web/uploads
 Remote: ln -nfs /tmp/temp_dir/shared/web/uploads $nextReleaseDir/web/uploads
+Remote: cd $nextReleaseDir && rm -rf app/cache/*
 Remote: cd $nextReleaseDir && ./app/console cache:clear --env=prod --no-debug
 Asset and assetic stuff...
 Remote: cd $nextReleaseDir && php app/console assets:install --symlink web --env=prod
@@ -200,6 +202,7 @@ Remote: [ -e '$nextReleaseDir/web/uploads' ]
 Remote: unlink $nextReleaseDir/web/uploads || rmdir $nextReleaseDir/web/uploads || rm $nextReleaseDir/web/uploads
 Remote: ln -nfs /tmp/temp_dir/shared/web/uploads $nextReleaseDir/web/uploads
 Remote: cd $nextReleaseDir && ./app/console doctrine:migration:migrate --env=dev
+Remote: cd $nextReleaseDir && rm -rf app/cache/*
 Remote: cd $nextReleaseDir && ./app/console cache:clear --env=dev --no-debug
 Asset and assetic stuff...
 Remote: cd $nextReleaseDir && php app/console assets:install --symlink web --env=dev

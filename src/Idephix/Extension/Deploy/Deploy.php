@@ -256,6 +256,7 @@ class Deploy implements IdephixAwareInterface
      */
     public function cacheClear()
     {
+        $this->idx->remote('cd '.$this->getNextReleaseFolder()." && rm -rf app/cache/*");
         return $this->idx->remote('cd '.$this->getNextReleaseFolder()." && ./app/console cache:clear --env=$this->symfonyEnv --no-debug", $this->dryRun);
     }
 
