@@ -301,7 +301,7 @@ class Idephix implements IdephixInterface
      * @return string the command output
      * @throws \Exception
      */
-    public function local($cmd, $dryRun = false, $timeout = 600)
+    public function local($cmd, $dryRun = false, $timeout = 600, $env = null)
     {
         $output = $this->output;
         $output->writeln("<info>Local</info>: $cmd");
@@ -310,7 +310,7 @@ class Idephix implements IdephixInterface
             return $cmd;
         }
 
-        $process = $this->buildInvoker($cmd, null, null, null, $timeout);
+        $process = $this->buildInvoker($cmd, null, $env, null, $timeout);
 
         $result = $process->run(function ($type, $buffer) use ($output) {
             $output->write($buffer);
