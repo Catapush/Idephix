@@ -141,11 +141,12 @@ class Idephix implements IdephixInterface
         return null !== $this->currentTarget;
     }
 
-    protected function openRemoteConnection($host)
+    protected function openRemoteConnection($host, $hostname = null)
     {
         if ($this->hasTarget()) {
             $this->sshClient->setParameters($this->currentTarget->get('ssh_params'));
             $this->sshClient->setHost($host);
+            $this->sshClient->setHostName($hostname);
             $this->sshClient->connect();
         }
     }
@@ -186,8 +187,14 @@ class Idephix implements IdephixInterface
 
         $hasErrors = false;
         foreach ($hosts as $host) {
+            $hostname = null;
+            if (is_array($host)) {
+                $hostname = $host['hostname'];
+                $host = $host['ip'];
+            }
+
             $this->currentHost = $host;
-            $this->openRemoteConnection($host);
+            $this->openRemoteConnection($host, $hostname);
             $returnValue = $this->application->run($this->input, $this->output);
             $hasErrors = $hasErrors || !(is_null($returnValue) || ($returnValue == 0));
             $this->closeRemoteConnection();

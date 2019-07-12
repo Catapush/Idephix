@@ -7,6 +7,7 @@ class SshClient
     private $proxy;
     private $params;
     private $host;
+    private $hostName = null;
     private $connected = false;
 
     /**
@@ -123,6 +124,16 @@ class SshClient
     public function getHost()
     {
         return $this->host;
+    }
+
+    public function setHostName($hostName)
+    {
+        $this->hostName = $hostName;
+    }
+
+    public function getHostName()
+    {
+        return $this->hostName;
     }
 
     /**

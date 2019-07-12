@@ -5,6 +5,7 @@ namespace Idephix\Extension\Deploy;
 use Idephix\Idephix;
 use Idephix\IdephixInterface;
 use Idephix\Extension\IdephixAwareInterface;
+use Idephix\SSH\SshClient;
 
 /**
  * Basic Deploy class
@@ -17,6 +18,9 @@ class Deploy implements IdephixAwareInterface
      * @var Idephix
      */
     private $idx;
+    /**
+     * @var SshClient
+     */
     private $sshClient;
     private $localBaseFolder;
     private $remoteBaseFolder;
@@ -117,13 +121,13 @@ class Deploy implements IdephixAwareInterface
         try {
 
             $this->idx->remote('ls '.$this->getCurrentReleaseFolder());
-            $this->log("Host ready ".$this->sshClient->getHost());
+            $this->log(sprintf("\n===> Host ready %s - %s \n", $this->sshClient->getHost(), $this->sshClient->getHostName()));
 
             return true;
 
         } catch (\Exception $e) {
 
-            $this->log(sprintf("Host %s NOT ready", $this->sshClient->getHost()));
+            $this->log(sprintf("\n===> Host %s NOT ready\n", $this->sshClient->getHost()));
 
             return false;
 
