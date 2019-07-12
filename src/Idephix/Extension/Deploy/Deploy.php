@@ -121,7 +121,7 @@ class Deploy implements IdephixAwareInterface
         try {
 
             $this->idx->remote('ls '.$this->getCurrentReleaseFolder());
-            $this->log(sprintf("\n===> Host ready %s - %s \n", $this->sshClient->getHost(), $this->sshClient->getHostName()));
+            $this->log(sprintf("\n\n===> Host ready %s - %s \n\n", $this->sshClient->getHost(), $this->sshClient->getHostName()));
 
             return true;
 
