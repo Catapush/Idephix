@@ -333,6 +333,8 @@ class Deploy implements IdephixAwareInterface
 
         $this->strategy->deploy();
 
+        $this->idx->remote('cd '.$this->getNextReleaseFolder().' && rm -Rf app/logs/*.log', $this->dryRun);
+
         $this->remoteLinkSharedFolders();
 
         if ($this->hasToMigrate()) {
