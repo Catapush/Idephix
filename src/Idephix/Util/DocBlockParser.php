@@ -73,11 +73,11 @@ class DocBlockParser
 
         foreach ($rows as $row) {
 
-            if (false !== strpos($row, '@')) {
+            if (false === strpos($row, '@Description')) {
                 continue;
             }
 
-            $parts = trim($row, ' *');
+            $parts = str_replace('@Description', '', trim($row, ' *'));
 
             if (empty($parts)) {
                 continue;
