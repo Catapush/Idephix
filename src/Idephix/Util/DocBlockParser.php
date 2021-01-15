@@ -70,12 +70,20 @@ class DocBlockParser
     private function parseDescription($rows)
     {
         $description = array();
-        $row = '';
-        while ((list(, $row) = each($rows)) && (false === strpos($row, '@'))) {
-            $parts = trim($row, ' *');
-            if (!empty($parts)) {
-                $description[] = $parts;
+
+        foreach ($rows as $row) {
+
+            if (false === strpos($row, '@')) {
+                continue;
             }
+
+            $parts = trim($row, ' *');
+
+            if (empty($parts)) {
+                continue;
+            }
+
+            $description[] = $parts;
         }
 
         return implode(' ', $description);
