@@ -73,7 +73,7 @@ class DocBlockParser
 
         foreach ($rows as $row) {
 
-            if (false === strpos($row, '@')) {
+            if (false !== strpos($row, '@')) {
                 continue;
             }
 
