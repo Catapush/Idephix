@@ -9,15 +9,6 @@ use Idephix\SSH\SshClient;
 interface IdephixInterface
 {
     /**
-     * @param array $targets
-     * @param SshClient $sshClient
-     * @param OutputInterface $output
-     * @param InputInterface $input
-     * @return \Idephix\IdephixInterface
-     */
-    public function __construct(array $targets = null, SshClient $sshClient = null, OutputInterface $output = null, InputInterface $input = null);
-
-    /**
      * Add a Command to the application.
      * The "--go" parameters should be defined as "$go = false".
      *
